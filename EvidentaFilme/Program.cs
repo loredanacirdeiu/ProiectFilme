@@ -35,13 +35,28 @@ class Program
         Console.Write("An: ");
         int an = int.Parse(Console.ReadLine());
 
+        List<string> actori = new List<string>();
+        string actor;
+
+        do
+        {
+            Console.Write("Actor (ENTER pentru stop): ");
+            actor = Console.ReadLine();
+
+            if (!string.IsNullOrEmpty(actor))
+            {
+                actori.Add(actor);
+            }
+
+        } while (!string.IsNullOrEmpty(actor));
+
         Console.WriteLine("Gen (0-Actiune,1-Comedie,2-Drama,3-Horror,4-SF): ");
         GenFilm gen = (GenFilm)int.Parse(Console.ReadLine());
 
         Console.WriteLine("Optiuni (1-Subtitrare,2-Dublat,4-3D,8-HD): ");
         OptiuniFilm opt = (OptiuniFilm)int.Parse(Console.ReadLine());
 
-        Film film = new Film(titlu, regizor, an, gen, opt);
+        Film film = new Film(titlu, regizor, an, actori, gen, opt);
         admin.AdaugaFilm(film);
     }
     static void AfiseazaLista(List<Film> filme)
@@ -50,7 +65,7 @@ class Program
     }
     static void CautaFilm(AdministrareFilme admin)
     {
-        Console.WriteLine("Introdu gen (0-4): ");
+        Console.WriteLine("Introdu genul (0-4): ");
         GenFilm gen = (GenFilm)int.Parse(Console.ReadLine());
         var rezultate = admin.CautaDupaGen(gen);
         AfiseazaLista(rezultate);

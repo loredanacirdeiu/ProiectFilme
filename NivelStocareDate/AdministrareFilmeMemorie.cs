@@ -57,5 +57,16 @@ namespace NivelStocareDate
             }
             return filme.Last().IdFilm + 1;
         }
+
+        public void AdaugaClient(Client c)
+        {
+        }
+
+        public List<Client> GetClienti()
+        {
+            return new List<Client>();
+        }
+
+
     }
 }

@@ -16,5 +16,8 @@ namespace NivelStocareDate
         // Metoda mutata din Program.cs
         List<Film> CautaDupaGen(GenFilm gen);
         bool UpdateFilm(Film f);
+
+        void AdaugaClient(Client c);
+        List<Client> GetClienti();
     }
 }

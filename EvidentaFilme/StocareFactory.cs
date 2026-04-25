@@ -9,7 +9,7 @@ namespace InterfataUtilizator
     {
         private const string FORMAT_SALVARE = "FormatSalvare";
         private const string NUME_FISIER = "NumeFisier";
-
+        private const string NUME_FISIER_CLIENTI = "NumeFisierClienti";
         public static IStocareData GetAdministratorStocare()
         {
             string formatSalvare = ConfigurationManager.AppSettings[FORMAT_SALVARE] ?? "";
@@ -33,5 +33,31 @@ namespace InterfataUtilizator
 
             return null;
         }
+
+        public static IStocareData GetAdministratorStocareClienti()
+        {
+            string formatSalvare = ConfigurationManager.AppSettings[FORMAT_SALVARE] ?? "";
+            string numeFisier = ConfigurationManager.AppSettings[NUME_FISIER_CLIENTI] ?? ""; // Folosește cheia de clienți
+
+            string locatieFisierSolutie = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent?.Parent?.FullName ?? "";
+            string caleCompletaFisier = locatieFisierSolutie + "\\" + numeFisier;
+
+            if (formatSalvare != null)
+            {
+                switch (formatSalvare.ToLower())
+                {
+                    case "txt":
+                        // Atenție: Trebuie să ai creată clasa AdministrareClientiFisierText
+                        return new AdministrareClientiFisierText(caleCompletaFisier + "." + formatSalvare);
+                    case "memorie":
+                    default:
+                        // Aici poți returna o variantă de memorie pentru clienți dacă ai una
+                        return new AdministrareFilmeMemorie();
+                }
+            }
+
+            return null;
+        }
     }
 }
+    

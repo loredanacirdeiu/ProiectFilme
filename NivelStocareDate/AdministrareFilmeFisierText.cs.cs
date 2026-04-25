@@ -80,5 +80,20 @@ namespace NivelStocareDate
             }
             return filme.Last().IdFilm + 1;
         }
+
+        public void AdaugaClient(Client c)
+        {
+            throw new NotImplementedException("Folositi AdministrareClientiFisierText pentru clienti.");
+        }
+
+        public List<Client> GetClienti()
+        {
+            return new List<Client>(); // Returnează listă goală pentru a nu crăpa aplicația
+        }
+
+      
+
+
+
     }
 }

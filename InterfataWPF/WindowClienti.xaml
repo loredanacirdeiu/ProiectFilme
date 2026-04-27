@@ -1,0 +1,56 @@
+﻿<Window x:Class="InterfataWPF.WindowClienti"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InterfataWPF"
+        mc:Ignorable="d"
+        Title="Gestiune Clienți" Height="600" Width="850" MinWidth="700">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="320"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Formular Adaugare -->
+        <StackPanel Grid.Column="0" Margin="10">
+            <TextBlock Text="Adăugare Client" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
+
+            <Label x:Name="lblNume" Content="Nume:"/>
+            <TextBox x:Name="txtNume"/>
+
+            <Label x:Name="lblEmail" Content="Email:"/>
+            <TextBox x:Name="txtEmail"/>
+
+            <Label x:Name="lblTelefon" Content="Telefon (10 cifre):"/>
+            <TextBox x:Name="txtTelefon"/>
+
+            <Label Content="Tip Abonament:"/>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="rbBasic" Content="Basic" IsChecked="True" Margin="5"/>
+                <RadioButton x:Name="rbPremium" Content="Premium" Margin="5"/>
+            </StackPanel>
+
+            <CheckBox x:Name="cbAcord" Content="Acord prelucrare date" Margin="0,15"/>
+
+            <Button Content="SALVEAZĂ" Height="35" Background="#2ECC71" Foreground="White" Click="btnSalveaza_Click"/>
+        </StackPanel>
+
+        <!-- Tabel si Cautare -->
+        <Grid Grid.Column="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Header="Căutare după telefon" Margin="0,0,0,10">
+                <DockPanel LastChildFill="True" Margin="5">
+                    <Button Content="Caută" DockPanel.Dock="Right" Width="80" Click="btnCauta_Click"/>
+                    <TextBox x:Name="txtCauta" Margin="0,0,5,0"/>
+                </DockPanel>
+            </GroupBox>
+
+            <DataGrid x:Name="dgClienti" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -26,7 +26,7 @@ namespace InterfataWPF
 
         private void btnClienti_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Încerc să deschid fereastra Clienți...");
+            
             WindowClienti winClienti = new WindowClienti();
             winClienti.Show();
         }

@@ -71,6 +71,29 @@ namespace NivelStocareDate
             return succes;
         }
 
+        public bool DeleteFilm(int idFilm)
+        {
+            List<Film> filme = GetFilme();
+
+            Film filmDeSters =
+                filme.FirstOrDefault(f => f.IdFilm == idFilm);
+
+            if (filmDeSters == null)
+                return false;
+
+            filme.Remove(filmDeSters);
+
+            using (StreamWriter sw = new StreamWriter(numeFisier, false))
+            {
+                foreach (Film film in filme)
+                {
+                    sw.WriteLine(film.ConversieLaSirPentruFisier());
+                }
+            }
+
+            return true;
+        }
+
         private int GetNextId()
         {
             var filme = GetFilme();

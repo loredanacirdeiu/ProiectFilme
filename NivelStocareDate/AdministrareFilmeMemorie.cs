@@ -49,6 +49,20 @@ namespace NivelStocareDate
             return false;
         }
 
+        public bool DeleteFilm(int idFilm)
+        {
+            for (int i = 0; i < filme.Count; i++)
+            {
+                if (filme[i].IdFilm == idFilm)
+                {
+                    filme.RemoveAt(i);
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         private int GetNextId()
         {
             if (filme.Count == 0)

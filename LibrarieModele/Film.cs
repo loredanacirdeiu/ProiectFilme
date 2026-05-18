@@ -23,6 +23,14 @@ namespace LibrarieModele
         public List<string> ActoriPrincipali { get; set; }
         public GenFilm Gen { get; set; }
         public OptiuniFilm Optiuni { get; set; }
+        public string ActoriText
+        {
+            get
+            {
+                return string.Join(", ", ActoriPrincipali);
+            }
+        }
+
         public Film() 
         {
             Titlu = string.Empty;

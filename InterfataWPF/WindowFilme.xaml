@@ -6,20 +6,105 @@
         xmlns:local="clr-namespace:InterfataWPF"
         mc:Ignorable="d"
         Title="Gestiune Filme" Height="500" Width="700" WindowStartupLocation="CenterScreen">
-    <Grid Margin="15">
+    <Grid Margin="15,15,15,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
-            <Label Content="Titlu Film:"/>
-            <TextBox x:Name="txtTitlu"/>
+        <StackPanel Grid.Column="0" Margin="10">
+            <Label Content="Titlu:"/>
+            <TextBox x:Name="txtTitlu"
+             Width="200"
+             Height="30"
+             Text="{Binding ElementName=lblTitlu, Path=Content, UpdateSourceTrigger=PropertyChanged}"/>
+
+
             <Label Content="Regizor:"/>
-            <TextBox x:Name="txtRegizor" Margin="0,0,0,20"/>
-            <Button Content="Adaugă Film" Height="30" Click="btnAdaugaFilm_Click"/>
+            <TextBox x:Name="txtRegizor"/>
+
+            <TextBlock Text="An:"/>
+            <TextBox x:Name="txtAn"
+             Margin="0,0,0,10"/>
+
+            <TextBlock Text="Actori principali:"/>
+            <TextBox x:Name="txtActori"
+             Margin="0,0,0,10"/>
+
+
+            <Label Content="Gen Film:" Margin="0,10,0,0" Height="25"/>
+
+            <ComboBox x:Name="cmbGen"
+          Margin="0,0,0,10" Height="32"/>
+
+            <TextBlock Text="Opțiuni:"/>
+
+            <CheckBox x:Name="chk3D"
+              Content="3D"/>
+
+            <CheckBox x:Name="chkSubtitrat"
+              Content="Subtitrat"/>
+
+            <CheckBox x:Name="chkDublat"
+              Content="Dublat"
+              Margin="0,0,0,10"/>
+
+        
+
+            <Button Content="Adaugă Film"
+        Height="29"
+        Margin="0,0,0,10"
+        Click="btnAdaugaFilm_Click" RenderTransformOrigin="0.468,2.17"/>
+
+            <Button Content="Caută după gen"
+        Height="22"
+        Click="btnCautaGen_Click"/>
+            <Button Content="Modifică Film"
+        Height="30"
+        Margin="0,0,0,10"
+        Click="btnModificaFilm_Click"/>
+
+            <Button Content="Șterge Film"
+        Height="30"
+        Margin="0,0,0,10"
+        Click="btnStergeFilm_Click"/>
+
         </StackPanel>
 
-        <DataGrid x:Name="dgFilme" Grid.Column="1" Margin="15,0,0,0" AutoGenerateColumns="True"/>
+
+
+        <DataGrid x:Name="dgFilme"
+          Grid.Column="1"
+          Margin="10"
+          AutoGenerateColumns="False"
+          IsReadOnly="True"
+          MouseDoubleClick="dgFilme_MouseDoubleClick">
+
+            <DataGrid.Columns>
+
+                <DataGridTextColumn Header="IdFilm"
+                            Binding="{Binding IdFilm}" />
+
+                <DataGridTextColumn Header="Titlu"
+                            Binding="{Binding Titlu}" />
+
+                <DataGridTextColumn Header="Regizor"
+                            Binding="{Binding Regizor}" />
+
+                <DataGridTextColumn Header="An"
+                            Binding="{Binding An}" />
+
+                <DataGridTextColumn Header="Actori"
+                            Binding="{Binding ActoriText}" />
+
+                <DataGridTextColumn Header="Gen"
+                            Binding="{Binding Gen}" />
+
+                <DataGridTextColumn Header="Optiuni"
+                            Binding="{Binding Optiuni}" />
+
+            </DataGrid.Columns>
+
+        </DataGrid>
     </Grid>
 </Window>

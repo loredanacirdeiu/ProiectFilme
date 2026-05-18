@@ -51,6 +51,10 @@ namespace NivelStocareDate
         public Film GetFilm(int idFilm) => null;
         public Film GetFilm(string titlu, string regizor) => null;
         public bool UpdateFilm(Film f) => false;
+        public bool DeleteFilm(int idFilm)
+        {
+            return false;
+        }
 
     }
 }

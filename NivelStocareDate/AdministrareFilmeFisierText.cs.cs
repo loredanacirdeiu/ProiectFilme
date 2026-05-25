@@ -41,9 +41,29 @@ namespace NivelStocareDate
             return filme;
         }
 
-        public List<Film> CautaDupaGen(GenFilm gen)
+        public List<Film> CautaDupaGen(GenFilm genCautat)
         {
-            return GetFilme().Where(f => f.Gen == gen).ToList();
+            List<Film> rezultate = new List<Film>();
+
+            using (StreamReader sr = new StreamReader(numeFisier))
+            {
+                string linieFisier;
+
+                while ((linieFisier = sr.ReadLine()) != null)
+                {
+                    if (string.IsNullOrWhiteSpace(linieFisier))
+                        continue;
+
+                    Film film = new Film(linieFisier);
+
+                    if (film.Gen == genCautat)
+                    {
+                        rezultate.Add(film);
+                    }
+                }
+            }
+
+            return rezultate;
         }
         public Film GetFilm(int idFilm)
         {

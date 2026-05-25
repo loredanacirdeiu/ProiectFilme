@@ -5,7 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfataWPF"
         mc:Ignorable="d"
-        Title="Gestiune Filme" Height="500" Width="700" WindowStartupLocation="CenterScreen">
+        Title="Gestiune Filme" Height="500" Width="700" WindowStartupLocation="CenterScreen" Background="#1E1E1E" Foreground="#E6B420">
+    <Window.Resources>
+
+    <!-- FONT GLOBAL -->
+    <Style TargetType="Control">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="14"/>
+        <Setter Property="FontWeight" Value="SemiBold"/>
+    </Style>
+
+    <!-- TEXTBOX -->
+    <Style TargetType="TextBox">
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#1E1E1E"/>
+        <Setter Property="BorderBrush" Value="#E6B420"/>
+        <Setter Property="CaretBrush" Value="White"/>
+        <Setter Property="Height" Value="28"/>
+    </Style>
+
+    <!-- LABEL -->
+    <Style TargetType="Label">
+        <Setter Property="Foreground" Value="#E6B420"/>
+    </Style>
+
+    <!-- TEXTBLOCK -->
+    <Style TargetType="TextBlock">
+        <Setter Property="Foreground" Value="#E6B420"/>
+    </Style>
+
+    <!-- BUTTON -->
+    <Style TargetType="Button">
+        <Setter Property="Background" Value="#E6B420"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#E6B420"/>
+        <Setter Property="Height" Value="30"/>
+        <Setter Property="Margin" Value="0,2"/>
+    </Style>
+
+    <!-- CHECKBOX -->
+    <Style TargetType="CheckBox">
+        <Setter Property="Foreground" Value="#E6B420"/>
+    </Style>
+
+        <!-- COMBOBOX DARK -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E6B420"/>
+            <Setter Property="BorderBrush" Value="#E6B420"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <!-- ITEM DIN COMBOBOX -->
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E6B420"/>
+        </Style>
+
+        <!-- DATAGRID -->
+    <Style TargetType="DataGrid">
+        <Setter Property="Background" Value="#1E1E1E"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderBrush" Value="#E6B420"/>
+        <Setter Property="RowBackground" Value="#1E1E1E"/>
+        <Setter Property="AlternatingRowBackground" Value="#252525"/>
+        <Setter Property="GridLinesVisibility" Value="None"/>
+    </Style>
+
+    <!-- HEADER DATAGRID -->
+    <Style TargetType="DataGridColumnHeader">
+        <Setter Property="Background" Value="Black"/>
+        <Setter Property="Foreground" Value="#E6B420"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="BorderBrush" Value="Black"/>
+    </Style>
+
+</Window.Resources>
     <Grid Margin="15,15,15,-6">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="250"/>
@@ -13,61 +88,69 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0" Margin="10">
-            <Label Content="Titlu:"/>
+            <Label Content="Titlu:" Foreground="#E6B420" />
             <TextBox x:Name="txtTitlu"
-             Width="200"
+             Width="230"
              Height="30"
+             Background="#1E1E1E"
              Text="{Binding ElementName=lblTitlu, Path=Content, UpdateSourceTrigger=PropertyChanged}"/>
 
 
-            <Label Content="Regizor:"/>
-            <TextBox x:Name="txtRegizor"/>
+            <Label Content="Regizor:" Foreground="#E6B420"/>
+            <TextBox x:Name="txtRegizor" Background="#1E1E1E"/>
 
-            <TextBlock Text="An:"/>
+            <TextBlock Text="An:" Width="216"/>
             <TextBox x:Name="txtAn"
-             Margin="0,0,0,10"/>
+             Margin="0,0,0,10" Background="#1E1E1E"/>
 
-            <TextBlock Text="Actori principali:"/>
+            <TextBlock Text="Actori principali:" Width="221"/>
             <TextBox x:Name="txtActori"
-             Margin="0,0,0,10"/>
+             Margin="0,0,0,10" Background="#1E1E1E"/>
 
 
-            <Label Content="Gen Film:" Margin="0,10,0,0" Height="25"/>
+            <Label Content="Gen Film:" Margin="0,10,0,0" Height="25" Foreground="#E6B420" />
 
             <ComboBox x:Name="cmbGen"
-          Margin="0,0,0,10" Height="32"/>
+          Margin="0,0,0,10" Height="32"  BorderBrush="#E6B420" SelectionChanged="cmbGen_SelectionChanged">
+                <ComboBox.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="#1E1E1E"/>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#333333"/>
+                </ComboBox.Resources>
+            </ComboBox>
+                      
+                      
 
-            <TextBlock Text="Opțiuni:"/>
+
+                <TextBlock Text="Opțiuni:"/>
 
             <CheckBox x:Name="chk3D"
-              Content="3D"/>
+              Content="3D" Foreground="#E6B420"/>
 
             <CheckBox x:Name="chkSubtitrat"
-              Content="Subtitrat"/>
+              Content="Subtitrat" Foreground="#E6B420"/>
 
             <CheckBox x:Name="chkDublat"
               Content="Dublat"
-              Margin="0,0,0,10"/>
+              Margin="0,0,0,10" Foreground="#E6B420"/>
 
         
 
             <Button Content="Adaugă Film"
-        Height="29"
-        Margin="0,0,0,10"
-        Click="btnAdaugaFilm_Click" RenderTransformOrigin="0.468,2.17"/>
-
+        Height="24"
+        Margin="0,0,0,0"
+        Click="btnAdaugaFilm_Click" RenderTransformOrigin="0.468,2.17"  Background ="#E6B420"/>
             <Button Content="Caută după gen"
-        Height="22"
-        Click="btnCautaGen_Click"/>
+        Height="27"
+        Click="btnCautaGen_Click" RenderTransformOrigin="0.499,-0.405" Background ="#E6B420"/>
             <Button Content="Modifică Film"
         Height="30"
-        Margin="0,0,0,10"
-        Click="btnModificaFilm_Click"/>
+        Margin="0,0,0,0"
+        Click="btnModificaFilm_Click" Background ="#E6B420"/>
 
             <Button Content="Șterge Film"
-        Height="30"
-        Margin="0,0,0,10"
-        Click="btnStergeFilm_Click"/>
+        Height="25"
+        Margin="0,0,0,0"
+        Click="btnStergeFilm_Click" Background ="#E6B420"/>
 
         </StackPanel>
 
@@ -76,13 +159,21 @@
         <DataGrid x:Name="dgFilme"
           Grid.Column="1"
           Margin="10"
+          Background="#1E1E1E"
           AutoGenerateColumns="False"
           IsReadOnly="True"
           MouseDoubleClick="dgFilme_MouseDoubleClick">
-
+            <DataGrid.ColumnHeaderStyle>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#1E1E1E"/>
+                    <Setter Property="Foreground" Value="#E6B420"/>
+                    <Setter Property="BorderBrush" Value="#1E1E1E"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </DataGrid.ColumnHeaderStyle>
             <DataGrid.Columns>
 
-                <DataGridTextColumn Header="IdFilm"
+                <DataGridTextColumn Header="IdFilm" 
                             Binding="{Binding IdFilm}" />
 
                 <DataGridTextColumn Header="Titlu"

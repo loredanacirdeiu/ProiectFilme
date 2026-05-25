@@ -9,6 +9,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="logof.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.7" />
   </ItemGroup>
 
@@ -16,6 +20,10 @@
     <ProjectReference Include="..\EvidentaFilme\EvidentaFilme.csproj" />
     <ProjectReference Include="..\LibrarieModele\LibrarieModele.csproj" />
     <ProjectReference Include="..\NivelStocareDate\NivelStocareDate.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="logof.jpg" />
   </ItemGroup>
 
 </Project>

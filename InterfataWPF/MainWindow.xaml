@@ -5,15 +5,70 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfataWPF"
         mc:Ignorable="d"
-        Title="Sistem Gestiune Cinema" Height="400" Width="500" WindowStartupLocation="CenterScreen">
-    <Grid Background="#F0F2F5">
+        Title="Sistem Gestiune Cinema" Height="400" Width="500" WindowStartupLocation="CenterScreen" Background="#1E1E1E">
+    <Window.Resources>
+
+        <Style TargetType="Button">
+        <Setter Property="Background" Value="#E6B420"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="BorderBrush" Value="#E6B420"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Height" Value="35"/>
+        <Setter Property="Cursor" Value="Hand"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="border"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="1">
+
+                        <ContentPresenter HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <!-- HOVER -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border"
+                                Property="Background"
+                                Value="#F5C842"/>
+                        </Trigger>
+
+                        <!-- CLICK -->
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="border"
+                                Property="Background"
+                                Value="#C99A00"/>
+                        </Trigger>
+
+                        <!-- FOCUS -->
+                        <Trigger Property="IsKeyboardFocused" Value="True">
+                            <Setter TargetName="border"
+                                Property="BorderBrush"
+                                Value="#E6B420"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid Background="#1E1E1E">
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock Text="MENIU PRINCIPAL" FontSize="26" FontWeight="Bold" Margin="0,0,0,40" Foreground="#2C3E50"/>
+            <Image Source="logof.jpg"
+       Width="100"
+       Height="100"/>
+            <Image Source="/Images/logo.png"/>
+            <TextBlock Text="APLICAȚIE FILME" FontSize="26" FontWeight="Bold" Margin="0,0,0,40" Foreground="#E6B420" Width="235"/>
 
-            <Button Content="GESTIUNE FILME" Width="250" Height="60" Margin="10" Background="#3498DB" Foreground="White" FontWeight="Bold" Click="btnFilme_Click"/>
-            <Button Content="GESTIUNE CLIENȚI" Width="250" Height="60" Margin="10" Background="#2ECC71" Foreground="White" FontWeight="Bold" Click="btnClienti_Click"/>
+            <Button Content="GESTIUNE FILME" Width="250" Height="60" Margin="10" Background="#1E1E1E" Foreground="White" FontWeight="Bold" Click="btnFilme_Click"/>
+            <Button Content="GESTIUNE CLIENȚI" Width="250" Height="60" Margin="10" Background="#1E1E1E" Foreground="White" FontWeight="Bold" Click="btnClienti_Click"/>
 
-            <TextBlock Text="Tema de casa - Management Cinema" Margin="0,30,0,0" Foreground="Gray"/>
         </StackPanel>
     </Grid>
 </Window>

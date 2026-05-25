@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using InterfataUtilizator;
+using InterfataWPF.ViewModels;
 namespace InterfataWPF
 {
     /// <summary>
@@ -24,11 +25,14 @@ namespace InterfataWPF
         private const int LUNG_TEL = 10;
         private const int MAX_LUNGIME_PRENUME = 15;
         IStocareData admin = StocareFactory.GetAdministratorStocareClienti();
-
+        private ClientViewModel vm;
         public WindowClienti()
         {
             InitializeComponent();
 
+            vm = new ClientViewModel();
+
+            DataContext = vm;
             if (admin != null)
                 RefreshGrid();
             else
@@ -38,11 +42,7 @@ namespace InterfataWPF
         private void btnSalveaza_Click(object sender, RoutedEventArgs e)
         {
             lblPrenume.Foreground = Brushes.Black;
-            if (txtTelefon.Text.Length != 10)
-            {
-                MessageBox.Show("Numărul de telefon trebuie să aibă 10 cifre!");
-                return;
-            }
+         
             bool valid = true;
             lblNume.Foreground = Brushes.Black;
             lblTelefon.Foreground = Brushes.Black;
@@ -80,6 +80,11 @@ namespace InterfataWPF
         }
 
         private void RefreshGrid() { dgClienti.ItemsSource = admin.GetClienti(); }
+
+        private void dgClienti_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }

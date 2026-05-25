@@ -4,59 +4,186 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfataWPF"
+        xmlns:conv="clr-namespace:InterfataWPF.Converters"
         mc:Ignorable="d"
+        Background="#1E1E1E"
         Title="Gestiune Clienți" Height="600" Width="850" MinWidth="700">
+    <Window.Resources>
+        <conv:StringToBooleanConverter x:Key="enumToBool"/>
+        <!-- FONT GLOBAL -->
+        <Style TargetType="Control">
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+
+        <!-- LABEL + TEXTBLOCK -->
+        <Style TargetType="Label">
+            <Setter Property="Foreground" Value="#E6B420"/>
+        </Style>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="#E6B420"/>
+        </Style>
+
+        <!-- TEXTBOX -->
+        <Style TargetType="TextBox">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E6B420"/>
+            <Setter Property="CaretBrush" Value="White"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+
+        <!-- BUTTON -->
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#E6B420"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="BorderBrush" Value="#E6B420"/>
+            <Setter Property="Height" Value="35"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- DATAGRID -->
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E6B420"/>
+            <Setter Property="RowBackground" Value="#1E1E1E"/>
+            <Setter Property="AlternatingRowBackground" Value="#252525"/>
+        </Style>
+
+        <!-- DATAGRID HEADER -->
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="Foreground" Value="#E6B420"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
+
+        <!-- COMBOBOX -->
+        <Style TargetType="ComboBox">
+            <Setter Property="Background" Value="#1E1E1E"/>
+            <Setter Property="Foreground" Value="#E6B420"/>
+            <Setter Property="BorderBrush" Value="#E6B420"/>
+            <Setter Property="Height" Value="30"/>
+        </Style>
+    </Window.Resources>
     <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="67*"/>
+            <RowDefinition Height="498*"/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="320"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
         <!-- Formular Adaugare -->
-        <StackPanel Grid.Column="0" Margin="10">
+        <StackPanel Grid.Column="0" Margin="10,10,10,10" Background="#1E1E1E" Grid.RowSpan="2">
             <TextBlock Text="Adăugare Client" FontSize="18" FontWeight="Bold" Margin="0,0,0,10"/>
 
             <Label x:Name="lblNume" Content="Nume:"/>
-            <TextBox x:Name="txtNume"/>
+            <TextBox x:Name="txtNume"
+         Height="30"
+         Margin="0,0,0,5"
+         Text="{Binding ClientCurent.Nume,
+         UpdateSourceTrigger=PropertyChanged,
+         ValidatesOnDataErrors=True}"/>
+
+            <TextBlock Foreground="Red"
+           FontSize="11"
+           Margin="0,0,0,10"
+           Text="{Binding ElementName=txtNume,
+           Path=(Validation.Errors)/ErrorContent}"/>
+
 
             <Label x:Name="lblPrenume" Content="Prenume"/>
 
             <TextBox x:Name="txtPrenume"
          Height="30"
-         Margin="0,0,0,10"/>
+         Margin="0,0,0,5"
+         Text="{Binding ClientCurent.Prenume,
+         UpdateSourceTrigger=PropertyChanged,
+         ValidatesOnDataErrors=True}"/>
+
+            <TextBlock Foreground="Red"
+           FontSize="11"
+           Margin="0,0,0,10"
+           Text="{Binding ElementName=txtPrenume,
+           Path=(Validation.Errors)/ErrorContent}"/>
 
             <Label x:Name="lblEmail" Content="Email:"/>
-            <TextBox x:Name="txtEmail"/>
+            <TextBox x:Name="txtEmail"
+         Height="30"
+         Margin="0,0,0,5"
+         Text="{Binding ClientCurent.Email,
+         UpdateSourceTrigger=PropertyChanged,
+         ValidatesOnDataErrors=True}"/>
+
+            <TextBlock Foreground="Red"
+           FontSize="11"
+           Margin="0,0,0,10"
+           Text="{Binding ElementName=txtEmail,
+           Path=(Validation.Errors)/ErrorContent}"/>
 
             <Label x:Name="lblTelefon" Content="Telefon (10 cifre):"/>
-            <TextBox x:Name="txtTelefon"/>
+            <TextBox x:Name="txtTelefon"
+         Height="30"
+         Margin="0,0,0,5"
+         Text="{Binding ClientCurent.Telefon,
+         UpdateSourceTrigger=PropertyChanged,
+         ValidatesOnDataErrors=True}"/>
+
+            <TextBlock Foreground="Red"
+           FontSize="11"
+           Margin="0,0,0,10"
+           Text="{Binding ElementName=txtTelefon,
+           Path=(Validation.Errors)/ErrorContent}"/>
+
+            
 
             <Label Content="Tip Abonament:"/>
             <StackPanel Orientation="Horizontal">
-                <RadioButton x:Name="rbBasic" Content="Basic" IsChecked="True" Margin="5"/>
-                <RadioButton x:Name="rbPremium" Content="Premium" Margin="5"/>
+                <RadioButton Content="Basic"
+             GroupName="Abonament"
+             Foreground="#E6B420"
+             IsChecked="{Binding Path=ClientCurent.TipAbonament,
+             Converter={StaticResource enumToBool},
+             ConverterParameter=Basic}"/>
+                <RadioButton Content="Premium"
+             GroupName="Abonament"
+             Foreground="#E6B420"
+             IsChecked="{Binding Path=ClientCurent.TipAbonament,
+             Converter={StaticResource enumToBool},
+             ConverterParameter=Premium}"/>
             </StackPanel>
 
-            <CheckBox x:Name="cbAcord" Content="Acord prelucrare date" Margin="0,15"/>
-
-            <Button Content="SALVEAZĂ" Height="35" Background="#2ECC71" Foreground="White" Click="btnSalveaza_Click"/>
+            <CheckBox x:Name="cbAcord"
+          Content="Acord prelucrare date"
+          Foreground="#E6B420"
+          IsChecked="{Binding ClientCurent.AcordDate, Mode=TwoWay}"/>
+            <Button Content="SALVEAZĂ" Height="35" Background="#E6B420" Foreground="Black" Click="btnSalveaza_Click"/>
         </StackPanel>
 
         <!-- Tabel si Cautare -->
-        <Grid Grid.Column="1" Margin="10">
+        <Grid Grid.Column="1" Margin="10,10,10,10" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
 
-            <GroupBox Header="Căutare după telefon" Margin="0,0,0,10">
+            <GroupBox Header="Căutare după telefon" Margin="0,0,0,10" Foreground="#E6B420">
                 <DockPanel LastChildFill="True" Margin="5">
                     <Button Content="Caută" DockPanel.Dock="Right" Width="80" Click="btnCauta_Click"/>
                     <TextBox x:Name="txtCauta" Margin="0,0,5,0"/>
                 </DockPanel>
             </GroupBox>
 
-            <DataGrid x:Name="dgClienti" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True"/>
+            <DataGrid x:Name="dgClienti" Grid.Row="1" AutoGenerateColumns="True" IsReadOnly="True" SelectionChanged="dgClienti_SelectionChanged">
+                
+                
+                
+            </DataGrid>
         </Grid>
     </Grid>
 </Window>

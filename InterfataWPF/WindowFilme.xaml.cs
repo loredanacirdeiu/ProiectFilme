@@ -193,6 +193,11 @@ namespace InterfataWPF
                 MessageBox.Show("Selectează un film!");
             }
         }
+
+        private void cmbGen_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 
 }
